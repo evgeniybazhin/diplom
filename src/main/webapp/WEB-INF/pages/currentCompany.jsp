@@ -8,8 +8,8 @@
     <spring:form modelAttribute="currentCompany" method="post" action="/logAdmin/currentCompany">
         <spring:input path="nameCompany"/>
         <spring:button>Pick current company</spring:button>
+        ${errorPickCompany}
         <spring:errors path="nameCompany"/>
-        ${errorPickCountry}
     </spring:form>
 </body>
 </html>

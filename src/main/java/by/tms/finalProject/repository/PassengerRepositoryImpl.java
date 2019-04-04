@@ -1,15 +1,13 @@
 package by.tms.finalProject.repository;
 
-import by.tms.finalProject.entity.City;
-import by.tms.finalProject.entity.Flight;
-import by.tms.finalProject.entity.Passenger;
-import by.tms.finalProject.entity.Reservation;
+import by.tms.finalProject.entity.*;
 import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -66,6 +64,11 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         entityManager.persist(reservation);
     }
 
-
+    @Override
+    public String placeRandomEcoClass() {
+        String query = "select max(p.seat) from Place p";
+        return (String) entityManager.createQuery(query)
+                .getSingleResult();
+    }
 
 }

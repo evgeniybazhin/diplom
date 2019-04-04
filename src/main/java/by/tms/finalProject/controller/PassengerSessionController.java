@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Date;
+import java.util.Random;
 
 @Controller
 @RequestMapping(path = "/logPass")
 public class PassengerSessionController {
+
+    Random random = new Random();
 
     @Autowired
     private PassengerService passengerService;
@@ -47,21 +49,24 @@ public class PassengerSessionController {
     }
 
     @PostMapping(path = "reserve")
-    public ModelAndView setFormReserve(@RequestParam("dateFlight") Date date, @RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, @RequestParam("classPlace") String classPlace, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
+    public ModelAndView setFormReserve(@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, @RequestParam("classPlace") String classPlace, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
         modelAndView.setViewName("redirect:/logPass");
         City cityF = new City();
         City cityT = new City();
         Reservation reservation = new Reservation();
-        Place place;
+        String place;
+
+        if(classPlace.equals("eco")){
+            place = passengerService.placeRandomEcoClass();
+            System.out.println(place);
+        }
 
         cityF.setNameCity(cityFrom);
         cityT.setNameCity(cityTo);
-
         httpServletRequest.getSession().setAttribute("currentFlight", passengerService.reservePlace(cityF, cityT));
 
         reservation.setFlight(passengerService.reservePlace(cityF, cityT));
         reservation.setPassenger((Passenger) httpServletRequest.getSession().getAttribute("currentPass"));
-
         passengerService.reserve(reservation);
         return modelAndView;
     }

@@ -1,9 +1,6 @@
 package by.tms.finalProject.service;
 
-import by.tms.finalProject.entity.City;
-import by.tms.finalProject.entity.Flight;
-import by.tms.finalProject.entity.Passenger;
-import by.tms.finalProject.entity.Reservation;
+import by.tms.finalProject.entity.*;
 import by.tms.finalProject.repository.PassengerRepository;
 import org.hibernate.JDBCException;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -70,4 +68,8 @@ public class PassengerServiceImpl implements PassengerService {
         passengerRepository.reserve(reservation);
     }
 
+    @Override
+    public String placeRandomEcoClass() {
+        return passengerRepository.placeRandomEcoClass();
+    }
 }

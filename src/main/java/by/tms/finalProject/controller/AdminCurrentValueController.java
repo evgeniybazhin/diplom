@@ -54,13 +54,14 @@ public class AdminCurrentValueController {
 
     @PostMapping(path = "currentCompany")
     public ModelAndView setFormCompany(@Valid @ModelAttribute("currentCompany") Company company, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("currentCompany");
+        modelAndView.setViewName("redirect:/logAdmin/aircraft");
         if(bindingResult.hasErrors()){
             modelAndView.setViewName("currentCompany");
             return modelAndView;
         }
         if(adminService.findCompany(company) == null){
             httpServletRequest.getSession().setAttribute("errorPickCompany", "Такой компании нет");
+            modelAndView.setViewName("currentCompany");
             return modelAndView;
         }
         httpServletRequest.getSession().setAttribute("currentCompany", adminService.findCompany(company));

@@ -7,8 +7,6 @@
 </head>
 <body>
     <form method="post" action="/logPass/reserve">
-        <p>Когда</p>
-        <input type="date" name="date">
         <p>Откуда</p>
         <input name="cityFrom">
         <p>Куда</p>

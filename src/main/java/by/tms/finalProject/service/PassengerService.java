@@ -1,10 +1,8 @@
 package by.tms.finalProject.service;
 
-import by.tms.finalProject.entity.City;
-import by.tms.finalProject.entity.Flight;
-import by.tms.finalProject.entity.Passenger;
-import by.tms.finalProject.entity.Reservation;
+import by.tms.finalProject.entity.*;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface PassengerService {
@@ -15,4 +13,5 @@ public interface PassengerService {
     List<Flight> getAllFlights();
     Flight reservePlace(City cityFrom, City cityTo);
     void reserve(Reservation reservation);
+    String placeRandomEcoClass();
 }
