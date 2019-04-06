@@ -23,6 +23,7 @@ public interface AdminRepository {
     Place findPlace(Place place);
     PlaceClass findPlaceClass(PlaceClass placeClass);
     List<Flight> getAllListFlights();
+    Aircraft findAircraft(Aircraft aircraft);
     //List<City> getAllCity();
     void removeCity(City city);
 

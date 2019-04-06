@@ -12,10 +12,6 @@
         <p>Куда</p>
         <input name="cityTo">
         <p>Место какого класса</p>
-        <select name="classPlace">
-            <option value="eco">Эконом-класс</option>
-            <option value="business">Бизнес-класс</option>
-        </select>
         <button type="submit">Reserve</button>
     </form>
 

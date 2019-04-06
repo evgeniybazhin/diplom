@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -16,8 +17,8 @@ public class Place {
     private Integer id;
 
     @Column(name = "seat")
-    @NotEmpty(message = "Введите номер места")
-    private String seat;
+    @NotNull(message = "Введите номер места")
+    private Integer seat;
 
     @OneToOne
     private PlaceClass placeClass;

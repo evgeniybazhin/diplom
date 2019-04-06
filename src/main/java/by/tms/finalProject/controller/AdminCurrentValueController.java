@@ -1,7 +1,9 @@
 package by.tms.finalProject.controller;
 
+import by.tms.finalProject.entity.Aircraft;
 import by.tms.finalProject.entity.Company;
 import by.tms.finalProject.entity.Country;
+import by.tms.finalProject.entity.PlaceClass;
 import by.tms.finalProject.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,4 +70,29 @@ public class AdminCurrentValueController {
         modelAndView.setViewName("redirect:/logAdmin/currentCompany");
         return modelAndView;
     }
+
+    @GetMapping(path = "currentPlaceClass")
+    public ModelAndView getFormPlaceClass(ModelAndView modelAndView){
+        modelAndView.setViewName("currentPlaceClass");
+        modelAndView.addObject("currentPlaceClass", new PlaceClass());
+        return modelAndView;
+    }
+
+    @PostMapping(path = "currentPlaceClass")
+    public ModelAndView setFormPlaceClass(@Valid @ModelAttribute("currentPlaceClass") PlaceClass placeClass, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
+        modelAndView.setViewName("currentPlaceClass");
+        if(bindingResult.hasErrors()){
+            return modelAndView;
+        }
+
+        if(adminService.findPlaceClass(placeClass) == null){
+            httpServletRequest.getSession().setAttribute("errorPlaceClass", "Такого класса-места нет");
+            return modelAndView;
+        }
+        httpServletRequest.getSession().setAttribute("currentPlaceClass", adminService.findPlaceClass(placeClass));
+        modelAndView.setViewName("redirect:/logAdmin/place");
+        return modelAndView;
+    }
+
+
 }

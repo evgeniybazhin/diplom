@@ -14,4 +14,5 @@ public interface PassengerService {
     Flight reservePlace(City cityFrom, City cityTo);
     void reserve(Reservation reservation);
     String placeRandomEcoClass();
+    Reservation findPlace(Integer seat);
 }

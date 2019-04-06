@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping(path = "logAdmin")
@@ -28,11 +29,10 @@ public class AdminController {
 
     @PostMapping(path = "classPlace")
     public ModelAndView setFormClass(@Valid @ModelAttribute("classPlace") PlaceClass placeClass, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logAdmin/place");
+        modelAndView.setViewName("classPlace");
         if(bindingResult.hasErrors()){
             return modelAndView;
         }
-
         if(adminService.findPlaceClass(placeClass) != null){
             httpServletRequest.getSession().setAttribute("errorPlaceClass", "Такой класс уже добавлен");
             modelAndView.setViewName("classPlace");
@@ -40,6 +40,7 @@ public class AdminController {
         }
         adminService.addPlaceClass(placeClass);
         httpServletRequest.getSession().setAttribute("currentPlaceClass", placeClass);
+        modelAndView.setViewName("redirect:/logAdmin/place");
         return modelAndView;
     }
 
@@ -54,7 +55,7 @@ public class AdminController {
     public ModelAndView setFormPlace(@Valid @ModelAttribute("newPlace") Place place, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
         modelAndView.setViewName("redirect:/logAdmin/place");
         if(bindingResult.hasErrors()){
-            modelAndView.setViewName("redirect:/logAdmin/place");
+            modelAndView.setViewName("place");
             return modelAndView;
         }
         if(adminService.findPlace(place) != null){
@@ -63,6 +64,7 @@ public class AdminController {
             return modelAndView;
         }
         PlaceClass placeClass = (PlaceClass) httpServletRequest.getSession().getAttribute("currentPlaceClass");
+        httpServletRequest.getSession().setAttribute("error", "Добавлено");
         place.setPlaceClass(placeClass);
         adminService.addPlace(place);
         return modelAndView;
@@ -76,17 +78,26 @@ public class AdminController {
 
     @PostMapping(path = "flight")
     public ModelAndView setFormFlight(@RequestParam("date") Date date,@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logAdmin/flight");
+        modelAndView.setViewName("flight");
         Flight flight = new Flight();
         City _cityFrom = new City();
         City _cityTo = new City();
+//        LocalDate nowDate = LocalDate.now();
+//        if(nowDate.compareTo(date) <= 0){
+//            httpServletRequest.getSession().setAttribute("errorDateAdd", "Назад в будущее?");
+//            return modelAndView;
+//        }
+
+        Aircraft aircraft = (Aircraft) httpServletRequest.getSession().getAttribute("currentAircraft");
         _cityFrom.setNameCity(cityFrom);
         _cityTo.setNameCity(cityTo);
         flight.setFlightDate(date);
+        flight.setAircraft(aircraft);
         flight.setCityFrom(adminService.findCity(_cityFrom));
         flight.setCityTo(adminService.findCity(_cityTo));
         adminService.addFlight(flight);
         httpServletRequest.getSession().setAttribute("listFlights", adminService.getAllListFlights());
+        modelAndView.setViewName("redirect:/logAdmin/flight");
         return modelAndView;
     }
 
@@ -106,5 +117,7 @@ public class AdminController {
         adminService.removeCity(city);
         return modelAndView;
     }
+
+
 
 }

@@ -15,7 +15,9 @@
         <input name="cityTo">
         <button type="submit">Add flight</button>
     </form>
+    ${errorDateAdd}
 
+    <a href="/logAdmin/currentAircraft">Выбрать текущий самолет</a>
     <a href="/logAdmin">Вернуться</a>
 </body>
 </html>

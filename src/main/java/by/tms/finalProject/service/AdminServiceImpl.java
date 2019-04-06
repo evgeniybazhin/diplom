@@ -138,6 +138,15 @@ public class AdminServiceImpl implements AdminService {
         return adminRepository.getAllListFlights();
     }
 
+    @Override
+    public Aircraft findAircraft(Aircraft aircraft) {
+        try {
+            return adminRepository.findAircraft(aircraft);
+        }catch (NoResultException e){
+            return null;
+        }
+    }
+
 //    @Override
 //    public List<City> getAllCity() {
 //        return adminRepository.getAllCity();

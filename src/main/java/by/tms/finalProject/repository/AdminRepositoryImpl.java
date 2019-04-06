@@ -130,6 +130,14 @@ public class AdminRepositoryImpl implements AdminRepository{
                 .getResultList();
     }
 
+    @Override
+    public Aircraft findAircraft(Aircraft aircraft) {
+        String query = "select a from Aircraft a where a.nameAircraft = :name";
+        return (Aircraft) entityManager.createQuery(query)
+                .setParameter("name", aircraft)
+                .getSingleResult();
+    }
+
 //    @Override
 //    public List<City> getAllCity() {
 //        String query = "select c from City c";

@@ -49,17 +49,12 @@ public class PassengerSessionController {
     }
 
     @PostMapping(path = "reserve")
-    public ModelAndView setFormReserve(@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, @RequestParam("classPlace") String classPlace, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
+    public ModelAndView setFormReserve(@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
         modelAndView.setViewName("redirect:/logPass");
         City cityF = new City();
         City cityT = new City();
         Reservation reservation = new Reservation();
-        String place;
 
-        if(classPlace.equals("eco")){
-            place = passengerService.placeRandomEcoClass();
-            System.out.println(place);
-        }
 
         cityF.setNameCity(cityFrom);
         cityT.setNameCity(cityTo);

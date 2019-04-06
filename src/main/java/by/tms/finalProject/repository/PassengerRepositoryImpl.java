@@ -71,4 +71,12 @@ public class PassengerRepositoryImpl implements PassengerRepository {
                 .getSingleResult();
     }
 
+    @Override
+    public Reservation findPlace(Integer seat) {
+        String query = "select r from Reservation r join r.place p where p.seat = :seat";
+        return (Reservation) entityManager.createQuery(query)
+                .setParameter("seat", seat)
+                .getSingleResult();
+    }
+
 }

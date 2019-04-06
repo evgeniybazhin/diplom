@@ -62,7 +62,7 @@ public class AdminSessionController {
 
     @PostMapping(path = "aircraft")
     public ModelAndView setFormAircraft(@Valid @ModelAttribute("newAir") Aircraft aircraft, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logAdmin/aircraft");
+        modelAndView.setViewName("redirect:/logAdmin/flight");
         if(bindingResult.hasErrors()){
             modelAndView.setViewName("redirect:/logAdmin/aircraft");
             return modelAndView;
@@ -74,6 +74,7 @@ public class AdminSessionController {
         Company company = (Company) httpServletRequest.getSession().getAttribute("currentCompany");
         aircraft.setCompany(company);
         adminService.addAircraft(aircraft);
+        httpServletRequest.getSession().setAttribute("currentAircraft", aircraft);
         return modelAndView;
     }
 

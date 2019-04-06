@@ -72,4 +72,9 @@ public class PassengerServiceImpl implements PassengerService {
     public String placeRandomEcoClass() {
         return passengerRepository.placeRandomEcoClass();
     }
+
+    @Override
+    public Reservation findPlace(Integer seat) {
+        return passengerRepository.findPlace(seat);
+    }
 }

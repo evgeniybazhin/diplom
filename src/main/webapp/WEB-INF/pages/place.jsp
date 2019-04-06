@@ -14,6 +14,7 @@
         <spring:button>Add place</spring:button>
     </spring:form>
 
+    <a href="/logAdmin/currentPlaceClass">Выбрать текущий класс места</a>
     <a href="/logAdmin">Вернуться</a>
 </body>
 </html>
