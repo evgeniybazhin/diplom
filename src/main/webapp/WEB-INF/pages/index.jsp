@@ -7,6 +7,5 @@
 <body>
 <a href="${pageContext.request.contextPath}/reg">Регистрация</a>
 <a href="${pageContext.request.contextPath}/log">Вход</a>
-<a href="${pageContext.request.contextPath}/test">Test</a>
 </body>
 </html>

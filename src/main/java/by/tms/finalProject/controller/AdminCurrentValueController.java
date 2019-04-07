@@ -84,7 +84,6 @@ public class AdminCurrentValueController {
         if(bindingResult.hasErrors()){
             return modelAndView;
         }
-
         if(adminService.findPlaceClass(placeClass) == null){
             httpServletRequest.getSession().setAttribute("errorPlaceClass", "Такого класса-места нет");
             return modelAndView;

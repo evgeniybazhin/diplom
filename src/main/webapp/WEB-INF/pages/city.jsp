@@ -11,8 +11,8 @@
     <spring:form method="post" action="/logAdmin/city" modelAttribute="newCity">
         <p>Введите название города</p>
         <spring:input path="nameCity"/>
-        <spring:button>Добавить город</spring:button>
         <spring:errors path="nameCity"/>
+        <spring:button>Добавить город</spring:button>
         ${errorCurrentCountry}
     </spring:form>
 </div>

@@ -15,6 +15,8 @@
         <button type="submit">Забронировать</button>
     </form>
 
+    ${errorReservePlace}
+
 <c:forEach var="flight" items="${listFlights}">
     <p>Откуда: <c:out value="${flight.getCityFrom().getNameCity()}"/></p> <p> Куда: <c:out value="${flight.getCityTo().getNameCity()}"/></p><p> Когда:  <c:out value="${flight.getFlightDate()}"/></p>
     <br>

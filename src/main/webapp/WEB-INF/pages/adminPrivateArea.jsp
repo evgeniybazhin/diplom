@@ -5,13 +5,13 @@
     <title>Личный кабинет админа</title>
 </head>
 <body>
-<a href="/logAdmin/company">Company</a>
-<br>
-<a href="/logAdmin/aircraft">Aircraft</a>
+<a href="/logAdmin/country">Country</a>
 <br>
 <a href="/logAdmin/city">City</a>
 <br>
-<a href="/logAdmin/country">Country</a>
+<a href="/logAdmin/company">Company</a>
+<br>
+<a href="/logAdmin/aircraft">Aircraft</a>
 <br>
 <a href="/logAdmin/classPlace">ClassPlace</a>
 <br>

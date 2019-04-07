@@ -36,7 +36,7 @@ public class PassengerSessionController {
 
     @PostMapping(path = "pa")
     public ModelAndView setForm(@Valid @ModelAttribute("pass") Passenger passenger, ModelAndView modelAndView, HttpServletRequest httpServletRequest) {
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/logPass");
         System.out.println(passenger);
         passengerService.changePassenger(passenger);
         return modelAndView;
@@ -50,7 +50,7 @@ public class PassengerSessionController {
 
     @PostMapping(path = "reserve")
     public ModelAndView setFormReserve(@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logPass");
+        modelAndView.setViewName("redirect:/logPass/reserve");
         City cityF = new City();
         City cityT = new City();
         Reservation reservation = new Reservation();
@@ -58,11 +58,18 @@ public class PassengerSessionController {
 
         cityF.setNameCity(cityFrom);
         cityT.setNameCity(cityTo);
+
+        if(passengerService.reservePlace(cityF, cityT) == null){
+            httpServletRequest.getSession().setAttribute("errorReservePlace", "Такого рейса нет");
+            return modelAndView;
+        }
+
         httpServletRequest.getSession().setAttribute("currentFlight", passengerService.reservePlace(cityF, cityT));
 
         reservation.setFlight(passengerService.reservePlace(cityF, cityT));
         reservation.setPassenger((Passenger) httpServletRequest.getSession().getAttribute("currentPass"));
         passengerService.reserve(reservation);
+        modelAndView.setViewName("redirect:/logPass");
         return modelAndView;
     }
 }

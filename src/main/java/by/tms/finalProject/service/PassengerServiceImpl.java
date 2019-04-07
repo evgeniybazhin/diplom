@@ -60,7 +60,11 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Flight reservePlace(City cityFrom, City cityTo) {
-        return passengerRepository.reservePlace(cityFrom, cityTo);
+        try {
+            return passengerRepository.reservePlace(cityFrom, cityTo);
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
@@ -74,7 +78,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Reservation findPlace(Integer seat) {
+    public Reservation findPlace(String seat) {
         return passengerRepository.findPlace(seat);
     }
 }

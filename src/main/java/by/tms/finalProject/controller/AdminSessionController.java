@@ -115,9 +115,8 @@ public class AdminSessionController {
 
     @PostMapping(path = "country")
     public ModelAndView setFormCountry(@Valid @ModelAttribute("newCountry") Country country, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logAdmin/city");
+        modelAndView.setViewName("country");
         if(bindingResult.hasErrors()){
-            modelAndView.setViewName("redirect:/logAdmin/Country");
             return modelAndView;
         }
         Country checkCountry = adminService.findCountry(country);
@@ -127,6 +126,7 @@ public class AdminSessionController {
         }
         adminService.addCountry(country);
         httpServletRequest.getSession().setAttribute("currentCountry", country);
+        modelAndView.setViewName("redirect:/logAdmin/city");
         return modelAndView;
     }
 

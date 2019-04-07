@@ -53,7 +53,7 @@ public class AdminController {
 
     @PostMapping(path = "place")
     public ModelAndView setFormPlace(@Valid @ModelAttribute("newPlace") Place place, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("redirect:/logAdmin/place");
+        modelAndView.setViewName("place");
         if(bindingResult.hasErrors()){
             modelAndView.setViewName("place");
             return modelAndView;
@@ -64,9 +64,9 @@ public class AdminController {
             return modelAndView;
         }
         PlaceClass placeClass = (PlaceClass) httpServletRequest.getSession().getAttribute("currentPlaceClass");
-        httpServletRequest.getSession().setAttribute("error", "Добавлено");
         place.setPlaceClass(placeClass);
         adminService.addPlace(place);
+        modelAndView.setViewName("redirect:/logAdmin/place");
         return modelAndView;
     }
 
@@ -82,10 +82,26 @@ public class AdminController {
         Flight flight = new Flight();
         City _cityFrom = new City();
         City _cityTo = new City();
-
+        Date date1 = new Date(System.currentTimeMillis());
+        Date date2 = (Date) date;
         Aircraft aircraft = (Aircraft) httpServletRequest.getSession().getAttribute("currentAircraft");
         _cityFrom.setNameCity(cityFrom);
         _cityTo.setNameCity(cityTo);
+
+        if(date2.before(date1)){
+            httpServletRequest.getSession().setAttribute("errorAddFlight", "Плохая дата");
+            return modelAndView;
+        }
+
+        if(adminService.findCity(_cityFrom) == null){
+            httpServletRequest.getSession().setAttribute("findCity", "Такого города нет");
+            return modelAndView;
+        }
+        if(adminService.findCity(_cityTo) == null){
+            httpServletRequest.getSession().setAttribute("findCity1", "Такого города нет");
+            return modelAndView;
+        }
+
         flight.setFlightDate(date);
         flight.setAircraft(aircraft);
         flight.setCityFrom(adminService.findCity(_cityFrom));

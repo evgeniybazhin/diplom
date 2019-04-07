@@ -11,11 +11,16 @@
         <input type="date" name="date">
         <p>Откуда</p>
         <input name="cityFrom">
+        ${findCity}
         <p>Куда</p>
         <input name="cityTo">
+        ${findCity1}
         <button type="submit">Добавить рейс</button>
     </form>
-    ${errorDateAdd}
+
+    ${errorAddFlight}
+
+
 
     <a href="/logAdmin/currentAircraft">Выбрать текущий самолет</a>
     <a href="/logAdmin">Вернуться</a>
