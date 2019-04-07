@@ -87,13 +87,12 @@ public class AdminSessionController {
 
     @PostMapping(path = "city")
     public ModelAndView setFormCity(@Valid @ModelAttribute("newCity") City city, BindingResult bindingResult, ModelAndView modelAndView, HttpServletRequest httpServletRequest) {
-        modelAndView.setViewName("redirect:/logAdmin/city");
+        modelAndView.setViewName("city");
         if (bindingResult.hasErrors()) {
             return modelAndView;
         }
         if(adminService.findCity(city) != null){
             httpServletRequest.getSession().setAttribute("error", "Такой город уже введен");
-            modelAndView.setViewName("city");
             return modelAndView;
         }
         if(httpServletRequest.getSession().getAttribute("currentCountry") == null){
@@ -103,6 +102,7 @@ public class AdminSessionController {
         Country currentCountry = (Country) httpServletRequest.getSession().getAttribute("currentCountry");
         city.setCountry(currentCountry);
         adminService.addCity(city);
+        modelAndView.setViewName("redirect:/logAdmin/city");
         return modelAndView;
     }
 

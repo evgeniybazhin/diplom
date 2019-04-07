@@ -6,9 +6,10 @@
 </head>
 <body>
     <spring:form method="post" modelAttribute="newAir" action="/logAdmin/aircraft">
+        <p>Введите название самолета</p>
         <spring:input path="nameAircraft"/>
+        <spring:button>Добавить самолет</spring:button>
         <spring:errors path="nameAircraft"/>
-        <spring:button>Add aircraft</spring:button>
         ${errorCurrentCompany}
     </spring:form>
     <a href="/logAdmin/currentCompany">Выбрать компанию</a>

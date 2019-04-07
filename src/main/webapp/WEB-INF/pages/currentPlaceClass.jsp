@@ -7,7 +7,7 @@
 <body>
     <spring:form modelAttribute="currentPlaceClass" method="post" action="/logAdmin/currentPlaceClass">
         <spring:input path="name"/>
-        <spring:button>Pick current class place</spring:button>
+        <spring:button>Выбрать класс места</spring:button>
         <spring:errors path="name"/>
         ${errorPlaceClass}
     </spring:form>

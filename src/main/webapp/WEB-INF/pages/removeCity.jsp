@@ -9,7 +9,7 @@
     <spring:form modelAttribute="removeCity" method="post" action="/logAdmin/removeCity">
         <spring:input path="nameCity"/>
         <spring:errors path="nameCity"/>
-        <spring:button>Remove</spring:button>
+        <spring:button>Удалить</spring:button>
     </spring:form>
 
     <a href="/logAdmin">Вернуться</a>

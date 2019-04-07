@@ -7,9 +7,10 @@
 </head>
 <body>
     <spring:form modelAttribute="classPlace" method="post" action="/logAdmin/classPlace">
+        <p>Введите класс места</p>
         <spring:input path="name"/>
+        <spring:button>Добавить класс места</spring:button>
         <spring:errors path="name"/>
-        <spring:button>Add Class Place</spring:button>
     </spring:form>
 
     <a href="/logAdmin">Вернуться</a>

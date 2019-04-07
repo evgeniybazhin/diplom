@@ -82,11 +82,6 @@ public class AdminController {
         Flight flight = new Flight();
         City _cityFrom = new City();
         City _cityTo = new City();
-//        LocalDate nowDate = LocalDate.now();
-//        if(nowDate.compareTo(date) <= 0){
-//            httpServletRequest.getSession().setAttribute("errorDateAdd", "Назад в будущее?");
-//            return modelAndView;
-//        }
 
         Aircraft aircraft = (Aircraft) httpServletRequest.getSession().getAttribute("currentAircraft");
         _cityFrom.setNameCity(cityFrom);
@@ -117,7 +112,5 @@ public class AdminController {
         adminService.removeCity(city);
         return modelAndView;
     }
-
-
 
 }

@@ -11,7 +11,7 @@
         <spring:input path="seat"/>
         <spring:errors path="seat"/>
         ${error}
-        <spring:button>Add place</spring:button>
+        <spring:button>Добавить место</spring:button>
     </spring:form>
 
     <a href="/logAdmin/currentPlaceClass">Выбрать текущий класс места</a>

@@ -6,17 +6,16 @@
     <title>Регистрация админа</title>
 </head>
 <body>
-
     <spring:form method="post" action="/reg/admin" modelAttribute="newAdmin">
+        <p>Логин</p>
         <spring:input  path="login"/>
         <spring:errors path="login"/>
         ${messageErrorAdmin}
         <p>Пароль</p>
         <spring:input path="password"/>
         <spring:errors path="password"/>
-        <spring:button>Add admin</spring:button>
+        <spring:button>Зарегистрироваться</spring:button>
     </spring:form>
-
 </body>
 
 </html>

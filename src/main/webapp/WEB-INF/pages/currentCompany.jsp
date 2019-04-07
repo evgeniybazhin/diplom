@@ -7,7 +7,7 @@
 <body>
     <spring:form modelAttribute="currentCompany" method="post" action="/logAdmin/currentCompany">
         <spring:input path="nameCompany"/>
-        <spring:button>Pick current company</spring:button>
+        <spring:button>Выбрать текущую компанию</spring:button>
         ${errorPickCompany}
         <spring:errors path="nameCompany"/>
     </spring:form>

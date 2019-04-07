@@ -17,7 +17,7 @@
     <spring:input path="secondName" value="${pass.secondName}"/>
     <p>Паспорт</p>
     <spring:input path="documentNumber" value="${pass.documentNumber}"/>
-    <spring:button>Change value</spring:button>
+    <spring:button>Изменить значения</spring:button>
 </spring:form>
 </body>
 </html>

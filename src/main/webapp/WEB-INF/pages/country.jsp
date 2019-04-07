@@ -14,7 +14,7 @@
         <p>Краткое название</p>
         <spring:input path="shortName"/>
         <spring:errors path="shortName"/>
-        <spring:button>Add Country</spring:button>
+        <spring:button>Добавить страну</spring:button>
     </spring:form>
 
     <a href="/logAdmin">Вернуться</a>

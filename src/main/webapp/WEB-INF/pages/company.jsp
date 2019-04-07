@@ -7,10 +7,11 @@
 </head>
 <body>
     <spring:form method="post" modelAttribute="newCompany" action="/logAdmin/company">
+        <p>Введите название компании</p>
         <spring:input path="nameCompany"/>
+        <spring:button>Добавить компанию</spring:button>
         <spring:errors path="nameCompany"/>
         ${error}
-        <spring:button>Add company</spring:button>
     </spring:form>
     <a href="/logAdmin">Вернуться</a>
 </body>

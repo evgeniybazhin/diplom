@@ -7,7 +7,7 @@
 <body>
     <spring:form action="/logAdmin/currentCountry" modelAttribute="currentCountry" method="post">
         <spring:input path="nameCountry"/>
-        <spring:button>Pick current Country</spring:button>
+        <spring:button>Выбрать текущее государство</spring:button>
         ${errorPickCountry}
         <spring:errors path="nameCountry"/>
     </spring:form>

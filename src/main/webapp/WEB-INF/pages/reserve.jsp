@@ -12,7 +12,7 @@
         <p>Куда</p>
         <input name="cityTo">
         <p>Место какого класса</p>
-        <button type="submit">Reserve</button>
+        <button type="submit">Забронировать</button>
     </form>
 
 <c:forEach var="flight" items="${listFlights}">

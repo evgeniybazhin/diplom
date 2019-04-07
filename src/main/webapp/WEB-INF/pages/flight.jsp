@@ -13,7 +13,7 @@
         <input name="cityFrom">
         <p>Куда</p>
         <input name="cityTo">
-        <button type="submit">Add flight</button>
+        <button type="submit">Добавить рейс</button>
     </form>
     ${errorDateAdd}
 
