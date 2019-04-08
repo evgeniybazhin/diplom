@@ -69,6 +69,7 @@ public class AdminSessionController {
         }
         if(httpServletRequest.getSession().getAttribute("currentCompany") == null){
             httpServletRequest.getSession().setAttribute("errorCurrentCompany", "Выберите компанию для добавления самолета");
+            modelAndView.setViewName("aircraft");
             return modelAndView;
         }
         Company company = (Company) httpServletRequest.getSession().getAttribute("currentCompany");

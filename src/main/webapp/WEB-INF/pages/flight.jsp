@@ -20,9 +20,6 @@
 
     ${errorAddFlight}
 
-
-
-    <a href="/logAdmin/currentAircraft">Выбрать текущий самолет</a>
     <a href="/logAdmin">Вернуться</a>
 </body>
 </html>

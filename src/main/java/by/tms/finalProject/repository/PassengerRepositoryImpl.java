@@ -45,7 +45,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
 
     @Override
     public List<Flight> getAllFlights() {
-        String query = "select f from Flight f";
+        String query = "select f from Flight f order by f.flightDate";
         return entityManager.createQuery(query)
                 .getResultList();
     }

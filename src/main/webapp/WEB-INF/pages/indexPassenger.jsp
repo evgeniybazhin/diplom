@@ -9,7 +9,7 @@
     <p>Добро пожаловать, ${currentPass.getFirstName()}</p>
     <a href="${pageContext.request.contextPath}/logPass/pa">Личный кабинет</a>
     <a href="/logPass/reserve">Бронирование</a>
-    <a href="">Выход</a>
+    <a href="localhost:8080/">Выход</a>
 
     ${currentFlight.getCityFrom().getNameCity()}
     ${currentFlight.getCityTo().getNameCity()}

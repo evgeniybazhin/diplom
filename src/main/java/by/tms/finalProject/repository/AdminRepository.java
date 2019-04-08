@@ -24,6 +24,9 @@ public interface AdminRepository {
     PlaceClass findPlaceClass(PlaceClass placeClass);
     List<Flight> getAllListFlights();
     Aircraft findAircraft(Aircraft aircraft);
+    Flight countFlight();
+    Flight findFlightById(Integer id);
+    void deleteFlight(Flight flight);
     //List<City> getAllCity();
     void removeCity(City city);
 

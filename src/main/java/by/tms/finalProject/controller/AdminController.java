@@ -3,6 +3,7 @@ package by.tms.finalProject.controller;
 import by.tms.finalProject.entity.*;
 import by.tms.finalProject.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -78,7 +79,7 @@ public class AdminController {
 
     @PostMapping(path = "flight")
     public ModelAndView setFormFlight(@RequestParam("date") Date date,@RequestParam("cityFrom") String cityFrom,@RequestParam("cityTo") String cityTo, ModelAndView modelAndView, HttpServletRequest httpServletRequest){
-        modelAndView.setViewName("flight");
+        modelAndView.setViewName("redirect:/logAdmin/flight");
         Flight flight = new Flight();
         City _cityFrom = new City();
         City _cityTo = new City();
@@ -90,15 +91,18 @@ public class AdminController {
 
         if(date2.before(date1)){
             httpServletRequest.getSession().setAttribute("errorAddFlight", "Плохая дата");
+            modelAndView.setViewName("flight");
             return modelAndView;
         }
 
         if(adminService.findCity(_cityFrom) == null){
             httpServletRequest.getSession().setAttribute("findCity", "Такого города нет");
+            modelAndView.setViewName("flight");
             return modelAndView;
         }
         if(adminService.findCity(_cityTo) == null){
             httpServletRequest.getSession().setAttribute("findCity1", "Такого города нет");
+            modelAndView.setViewName("flight");
             return modelAndView;
         }
 
@@ -108,7 +112,6 @@ public class AdminController {
         flight.setCityTo(adminService.findCity(_cityTo));
         adminService.addFlight(flight);
         httpServletRequest.getSession().setAttribute("listFlights", adminService.getAllListFlights());
-        modelAndView.setViewName("redirect:/logAdmin/flight");
         return modelAndView;
     }
 
@@ -126,6 +129,21 @@ public class AdminController {
             return modelAndView;
         }
         adminService.removeCity(city);
+        return modelAndView;
+    }
+
+    @GetMapping(path = "removeFlight")
+    public ModelAndView removeFlight(ModelAndView modelAndView){
+        modelAndView.setViewName("removeFlight");
+        Flight flight;
+        Integer countFlight = adminService.countFlight().getId();
+        for(int i = 1; i <=countFlight; i++){
+            flight = adminService.findFlightById(i);
+            LocalDate date2 = adminService.findFlightById(i).getFlightDate().toLocalDate();
+            if(date2.isBefore(LocalDate.now())){
+                adminService.deleteFlight(flight);
+            }
+        }
         return modelAndView;
     }
 

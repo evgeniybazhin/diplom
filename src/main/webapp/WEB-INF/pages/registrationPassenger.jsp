@@ -19,7 +19,7 @@
         <spring:errors path="login"/>
         ${messageErrorPassenger}
         <p>Пароль</p>
-        <spring:input path="password"/>
+        <spring:input type="password" path="password"/>
         <spring:errors path="password"/>
         <p>Номер паспорта</p>
         <spring:input path="documentNumber"/>

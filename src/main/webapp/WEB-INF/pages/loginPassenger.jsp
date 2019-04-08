@@ -12,7 +12,7 @@
         <spring:input path="login"/>
         <spring:errors path="login"/>
         <p>Пароль</p>
-        <spring:input path="password"/>
+        <spring:input type="password" path="password"/>
         <spring:errors path="password"/>
         <spring:button>Войти</spring:button>
     </spring:form>

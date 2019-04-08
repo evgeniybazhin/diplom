@@ -147,6 +147,21 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
+    @Override
+    public Flight countFlight() {
+        return adminRepository.countFlight();
+    }
+
+    @Override
+    public Flight findFlightById(Integer id) {
+        return adminRepository.findFlightById(id);
+    }
+
+    @Override
+    public void deleteFlight(Flight flight) {
+        adminRepository.deleteFlight(flight);
+    }
+
 //    @Override
 //    public List<City> getAllCity() {
 //        return adminRepository.getAllCity();

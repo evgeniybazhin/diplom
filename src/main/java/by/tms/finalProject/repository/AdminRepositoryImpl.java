@@ -138,6 +138,23 @@ public class AdminRepositoryImpl implements AdminRepository{
                 .getSingleResult();
     }
 
+    @Override
+    public Flight countFlight() {
+        String query = "select f from Flight f where f.id = max(f.id)";
+        return (Flight) entityManager.createQuery(query)
+                .getSingleResult();
+    }
+
+    @Override
+    public Flight findFlightById(Integer id) {
+        return entityManager.find(Flight.class, id);
+    }
+
+    @Override
+    public void deleteFlight(Flight flight) {
+        entityManager.remove(flight);
+    }
+
 //    @Override
 //    public List<City> getAllCity() {
 //        String query = "select c from City c";

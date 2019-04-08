@@ -21,6 +21,8 @@
 <br>
 <a href="/logAdmin/removeCity">Remove City</a>
 <br>
+
+<a href="localhost:8080/">Выход</a>
 <c:forEach var="pass" items="${listPassenger}">
     <c:out value="${pass}"/>
     <br>

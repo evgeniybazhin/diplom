@@ -55,16 +55,16 @@
                 </property>
         </bean>
 
-        <!--<mvc:interceptors>-->
-                <!--<mvc:interceptor>-->
-                        <!--<mvc:mapping path="/log/**/"/>-->
-                        <!--<mvc:mapping path="/reg/**/"/>-->
-                        <!--<ref bean="logRegInterceptor"/>-->
-                <!--</mvc:interceptor>-->
-                <!--<mvc:interceptor>-->
-                        <!--<mvc:mapping path="/"/>-->
-                        <!--<ref bean="indexInterceptor"/>-->
-                <!--</mvc:interceptor>-->
-        <!--</mvc:interceptors>-->
+        <mvc:interceptors>
+                <mvc:interceptor>
+                        <mvc:mapping path="/log/**"/>
+                        <mvc:mapping path="/reg/**"/>
+                        <ref bean="logRegInterceptor"/>
+                </mvc:interceptor>
+                <mvc:interceptor>
+                        <mvc:mapping path="/"/>
+                        <ref bean="indexInterceptor"/>
+                </mvc:interceptor>
+        </mvc:interceptors>
 
 </beans>
