@@ -95,6 +95,12 @@ public class AdminController {
             return modelAndView;
         }
 
+        if(cityFrom.equals(cityTo)){
+            httpServletRequest.getSession().setAttribute("errorSetCity", "Такой полет не может быть добавлен");
+            modelAndView.setViewName("flight");
+            return modelAndView;
+        }
+
         if(adminService.findCity(_cityFrom) == null){
             httpServletRequest.getSession().setAttribute("findCity", "Такого города нет");
             modelAndView.setViewName("flight");

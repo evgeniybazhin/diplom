@@ -19,6 +19,7 @@
     </form>
 
     ${errorAddFlight}
+    ${errorSetCity}
 
     <a href="/logAdmin">Вернуться</a>
 </body>
